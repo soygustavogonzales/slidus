@@ -1,0 +1,6 @@
+*.log
+*.tmp
+*.temp
+*.[oa]
+#Por si acaso queremos ocultar archivos de git directamente
+ocultos/
