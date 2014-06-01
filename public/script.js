@@ -6,12 +6,6 @@
 	btnPrev = $('button.prev'),
 	socket = io.connect('/');
 
-	function adelante(){
-		prev.trigger('click');
-	}
-	function atras(){
-		next.trigger('click');
-	}
 
 	socket.on('connect',function(){
 		
@@ -23,14 +17,6 @@
 		btnNext.on("click",function(){
 			socket.emit('adelante',true);
 			console.log(this);
-		});
-
-		socket.on('adelante',function(){
-			adelante();
-		});
-
-		socket.on('atras',function(){
-			atras();
 		});
 
 	})//end sockets

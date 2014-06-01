@@ -4,3 +4,4 @@
 *.[oa]
 #Por si acaso queremos ocultar archivos de git directamente
 ocultos/
+node_modules/

@@ -1,0 +1,60 @@
+!!! 5
+html(lang='en-US')
+	head
+		meta(charset='UTF-8')
+		meta(name="viewport",content="width=device-width, initial-scale=1.0")
+		title
+		script(type='text/javascript', src='/socket.io/socket.io.js')
+		link(rel="stylesheet",href="bootstrap/css/bootstrap.min.css")
+		link(rel="stylesheet",href="bootstrap/css/bootstrap-responsive.min.css")
+		style(type="text/css")
+			#loggin{
+				max-width:350px;
+				min-width:50px;
+				background:#9CDB82;
+				border-radius:.2em;
+				font-family:'Verdana', sans-serif arial;
+				font-size:15px;
+				margin:0 auto;
+				padding:5px 10%;
+				color:black;
+			}
+
+			input[type=text]{
+				max-width:80%;
+				display:block;
+				min-width:50px;
+				margin:3px auto;
+			}
+			.butons{
+				color:red;
+				margin: 0 auto;
+				padding:5px 10px;
+				width:200px;
+			}
+			a.btn{
+				/*
+				display:none;
+				*/
+			}
+			button.btn{
+				display:none;
+			}
+
+	body
+		div(class="container")
+			div#loggin
+				form.form(action="/sendLoginData",method="post",enctype="multipart/form-data")
+					div.col-md-8
+						input#username(type="text",placeholder="username",name="user")
+						input#password(type="password",name="psw",placeholder="password")
+						select.form-control(name="ptn")
+							each val in presentations
+								option(value="#{val}")|#{val}
+						div.butons
+							input(type="submit")|LOGEARME
+							input.btn(type="reset")|LIMPIAR
+		script(src="jquery-1.9.1.min.js")
+		script(src="bootstrap/js/bootstrap.js")
+		script(src="loggin.js")
+

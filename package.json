@@ -1,0 +1,25 @@
+{
+  "name": "slidus",
+  "version": "0.0.0-2",
+  "description": "automatic control slides with socket.io on nodejs",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~3.3.4",
+    "jade": "~0.33.0",
+    "nodemon": "~0.7.8",
+    "socket.io": "~0.9.16"
+  },
+  "subdomain": "slidus4",
+  "devDependencies": {},
+  "scripts": {
+    "start": "app.js"
+  },
+  "keywords": [
+    "slides"
+  ],
+  "author": "Gustavo Gonzales",
+  "license": "ISC",
+  "engines": {
+    "node": "0.10.x"
+  }
+}
