@@ -1,12 +1,12 @@
-!!! 5
-html(lang='en-US')
+doctype html
+html(lang='es-PE')
 	head
 		meta(charset='UTF-8')
 		meta(name="viewport",content="width=device-width, initial-scale=1.0")
-		title
+		title|LOGIN
 		script(type='text/javascript', src='/socket.io/socket.io.js')
-		link(rel="stylesheet",href="bootstrap/css/bootstrap.min.css")
-		link(rel="stylesheet",href="bootstrap/css/bootstrap-responsive.min.css")
+		link(rel="stylesheet",href="/bootstrap/css/bootstrap.min.css")
+		link(rel="stylesheet",href="/bootstrap/css/bootstrap-responsive.min.css")
 		style(type="text/css")
 			#loggin{
 				max-width:350px;
@@ -32,14 +32,7 @@ html(lang='en-US')
 				padding:5px 10px;
 				width:200px;
 			}
-			a.btn{
-				/*
-				display:none;
-				*/
-			}
-			button.btn{
-				display:none;
-			}
+
 
 	body
 		div(class="container")
@@ -52,9 +45,8 @@ html(lang='en-US')
 							each val in presentations
 								option(value="#{val}")|#{val}
 						div.butons
-							input(type="submit")|LOGEARME
-							input.btn(type="reset")|LIMPIAR
-		script(src="jquery-1.9.1.min.js")
-		script(src="bootstrap/js/bootstrap.js")
-		script(src="loggin.js")
+							input.btn(class="success",type="submit")|LOGEARME
+							input.btn(class="warning",type="reset")|LIMPIAR
+		script(src="/jquery-1.9.1.min.js")
+		script(src="/bootstrap/js/bootstrap.js")
 

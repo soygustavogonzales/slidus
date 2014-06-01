@@ -2,7 +2,6 @@
 var express = require('express')
 	, fs = require('fs')
   , http = require('http');
-
 var app = express();
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
@@ -12,18 +11,15 @@ server.listen(port);
 io.set('log level',1); //Lo pongo a nivel uno para evitar demasiados logs ajenos a la aplicación.
 
 app.configure(function(){
-
+	
+		var oneYear = 31557600000;//miliseconds in one year
+ app.use(express.static('public', { maxAge: oneYear }));
 	app.use(express.cookieParser());
 	app.use(express.bodyParser());
 	app.use(express.session({secret: 'mi secreto'}));
-	//No uso layout en las vistas
-	var oneYear = 31557600000;
-
-
-	//Indicamos el directorio de acceso publico
-    app.use(express.static('public', { maxAge: oneYear }));
 
 });
+
 //Marco la ruta de acceso y la vista a mostrar
 app.get('/', function(req, res){
 	console.log('Nuevo host conectado');
@@ -32,13 +28,20 @@ app.get('/', function(req, res){
     	,pretty:true//para que no compirma el html, para poder visualizar el documento .html por el developer tools del navegador
     });
 });
-app.get('/aed2',function(req,res){
-	res.sendfile(__dirname+"/views/prueba.html")
+app.get('/sliders/:slider',function(req,res,next){
+	var slider = req.params.slider
+	if(slider!=null||slider!=""||slider!=" "||slider!="uu"){
+		res.render("sliders/"+slider+".jade",{title:"Ing.Administrativa"})
+	}
+	else{
+		var err = new Error("slider not exists")
+		err.status = 404
+		next(err)
+	}
 })
-app.get('/admin',function(req,res){
-	//res.render("loggin.jade");
-		res.render('adminPresentation.jade');
 
+app.get('/admin',function(req,res){
+		res.render('adminPresentation.jade');
 })
 
 app.get("/login",function(req,res){
@@ -52,6 +55,7 @@ app.get("/login",function(req,res){
 })
 
 app.post('/sendLoginData',function(req,res){
+	console.log(req.body);
 	var username = req.body.user,psw = req.body.psw, presentation = req.body.ptn;
 	req.session.user = {
 		name:username,
@@ -62,10 +66,10 @@ app.post('/sendLoginData',function(req,res){
 	if(psw=="12345"){
 			switch(true){
 				case(username=="one3hill"):
-					res.render("adminPresentation.jade")
+					res.redirect('/admin')
 					break;
 				default:
-					res.render("adminPresentation.jade")
+					res.redirect('/admin')
 					break;
 			}
 		}
@@ -73,6 +77,8 @@ app.post('/sendLoginData',function(req,res){
 		res.redirect('/login')
 	}
 })
+
+
 io.sockets.on('connection',function(socket){
 	//console.log(socket);
 	socket.on('adelante',function(){

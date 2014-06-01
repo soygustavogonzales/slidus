@@ -1,0 +1,20 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport",content="width=device-width,initial-scale=1,maximum-scale=1, user-scalable=no")
+		title|#{title}
+		link(rel="stylesheet",href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic")
+		link(rel="stylesheet",href="/css/impress-demo.css")
+		script(src="/socket.io/socket.io.js")
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+		body.impress-not-supported
+			block content
+			block import
+				script(src="/js/impress.js")
+				script
+					if("ontouchstart" in document.documentElement){
+						document.querySelector(".hint").innertHTML="<p>tap on the left or right to navigate</p>";
+					}
+					impress().init()
+				block import_sub1
