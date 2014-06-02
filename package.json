@@ -1,6 +1,6 @@
 {
   "name": "slidus",
-  "version": "0.0.0-2",
+  "version": "0.0.0-4",
   "description": "automatic control slides with socket.io on nodejs",
   "main": "app.js",
   "dependencies": {

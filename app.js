@@ -12,7 +12,7 @@ io.set('log level',1); //Lo pongo a nivel uno para evitar demasiados logs ajenos
 
 app.configure(function(){
 	
-		var oneYear = 31557600000;//miliseconds in one year
+	var oneYear = 31557600000;//miliseconds in one year
  app.use(express.static('public', { maxAge: oneYear }));
 	app.use(express.cookieParser());
 	app.use(express.bodyParser());
@@ -41,7 +41,10 @@ app.get('/sliders/:slider',function(req,res,next){
 })
 
 app.get('/admin',function(req,res){
+	if(req.session.user.loginState == true)
 		res.render('adminPresentation.jade');
+	else
+		res.redirect('/login')
 })
 
 app.get("/login",function(req,res){
@@ -66,10 +69,12 @@ app.post('/sendLoginData',function(req,res){
 	if(psw=="12345"){
 			switch(true){
 				case(username=="one3hill"):
+					req.session.user.loginState = true;
 					res.redirect('/admin')
 					break;
 				default:
 					res.redirect('/admin')
+					req.session.user.loginState = true;
 					break;
 			}
 		}
