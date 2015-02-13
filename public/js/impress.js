@@ -22,8 +22,6 @@
 // You are one of those who like to know how thing work inside?
 // Let me show you the cogs that make impress.js run...
 (function ( document, window ) {
-    socket = io.connect('/');
-
     'use strict';
     
     // HELPER FUNCTIONS
@@ -678,8 +676,6 @@
         // or anything. `impress:init` event data gives you everything you 
         // need to control the presentation that was just initialized.
         var api = event.detail.api;
-        window.api = api;
-        console.log(api)
         // KEYBOARD NAVIGATION HANDLERS
         
         // Prevent default keydown action when one of supported key is pressed.
@@ -726,8 +722,9 @@
                 event.preventDefault();
             }
         }, false);
+    window.impressApiSlider = api;
+    
 /*
-*/
     socket.on('connect',function(){
 
         socket.on('adelante',function(){
@@ -739,6 +736,7 @@
         });
 
     })
+*/  
 
         
         // delegated handler for clicking on the links to presentation steps

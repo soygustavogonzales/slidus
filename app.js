@@ -41,7 +41,7 @@ app.get('/sliders/:slider',function(req,res,next){
 })
 
 app.get('/admin',function(req,res){
-	if(req.session.user.loginState == true)
+	if(req.session.user&&(req.session.user.loginState == true))
 		res.render('adminPresentation.jade');
 	else
 		res.redirect('/login')
